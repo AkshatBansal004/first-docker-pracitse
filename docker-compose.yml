@@ -1,0 +1,23 @@
+services:
+  python-app:
+    build: .
+    ports:
+      - "7000:6000" 
+    depends_on:
+      - mysql
+    networks:
+      - app-net
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+    ports:
+      - "3306:3306"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+
